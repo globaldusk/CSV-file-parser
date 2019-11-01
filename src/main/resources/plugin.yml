@@ -2,3 +2,8 @@ name: BedHunt
 version: 0.1
 api-version: 1.14
 authors: [Australian, Jelly_Squid]
+main: mc.samios.io.BedHunt.Main
+commands:
+  info:
+    description: Displays rules and gameplay information of BedHunt
+    usage: /info
