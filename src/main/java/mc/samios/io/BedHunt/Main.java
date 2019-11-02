@@ -1,5 +1,6 @@
 package mc.samios.io.BedHunt;
 
+import mc.samios.io.BedHunt.cmd.CubeCommand;
 import mc.samios.io.BedHunt.cmd.InfoCommand;
 import mc.samios.io.BedHunt.event.JoinQuitEvent;
 import mc.samios.io.BedHunt.lobby.Lobby;
@@ -35,6 +36,7 @@ public class Main extends JavaPlugin {
 
     public void registerCommands() {
         getCommand("info").setExecutor(new InfoCommand());
+        getCommand("cube").setExecutor(new CubeCommand());
     }
 
     public void cMsg(String message) {
