@@ -2,6 +2,7 @@ package mc.samios.io.BedHunt;
 
 import mc.samios.io.BedHunt.cmd.CubeCommand;
 import mc.samios.io.BedHunt.cmd.InfoCommand;
+import mc.samios.io.BedHunt.event.BedPlacedEvent;
 import mc.samios.io.BedHunt.event.JoinQuitEvent;
 import mc.samios.io.BedHunt.lobby.Lobby;
 import mc.samios.io.BedHunt.util.C;
@@ -31,6 +32,7 @@ public class Main extends JavaPlugin {
     public void registerEvents() {
         this.getServer().getPluginManager().registerEvents(new JoinQuitEvent(), this);
         this.getServer().getPluginManager().registerEvents(new Lobby(), this);
+        this.getServer().getPluginManager().registerEvents(new BedPlacedEvent(), this);
 
     }
 

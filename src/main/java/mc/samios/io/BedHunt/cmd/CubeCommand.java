@@ -25,12 +25,13 @@ public class CubeCommand implements CommandExecutor {
         double startZ = player.getLocation().getZ();
         Material material = Material.GLASS;
 
-        for (int x = 0; x < 10; x++) {
-            for (int z = 0; z < 10; z++) {
-                for (int y = 0; y <= 10; y++) {
+        int size = 10;
+        for (int x = 0; x < size; x++) {
+            for (int z = 0; z < size; z++) {
+                for (int y = 0; y <= size; y++) {
                     Location loc = new Location(world, startX + x, startY + y, startZ + z);
                     if (y != 10 && y!=0) {
-                        if ((x >= 0 && z == 0) || (x >= 0 && z == 9) ||( x == 0 && z >= 0) || (x == 9 && z >= 0))
+                        if ((x >= 0 && z == 0) || (x >= 0 && z == (size - 1)) ||( x == 0 && z >= 0) || (x == (size - 1) && z >= 0))
                             loc.getBlock().setType(material);
                     } else {
                         loc.getBlock().setType(material);
