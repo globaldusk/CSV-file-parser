@@ -1,6 +1,8 @@
 package mc.samios.io.BedHunt;
 
+import mc.samios.io.BedHunt.cmd.CubeCommand;
 import mc.samios.io.BedHunt.cmd.InfoCommand;
+import mc.samios.io.BedHunt.event.BedPlacedEvent;
 import mc.samios.io.BedHunt.event.JoinQuitEvent;
 import mc.samios.io.BedHunt.util.C;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,10 +30,13 @@ public class Main extends JavaPlugin {
 
     public void registerEvents() {
         this.getServer().getPluginManager().registerEvents(new JoinQuitEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new BedPlacedEvent(), this);
+
     }
 
     public void registerCommands() {
         getCommand("info").setExecutor(new InfoCommand());
+        getCommand("cube").setExecutor(new CubeCommand());
     }
 
     public void cMsg(String message) {

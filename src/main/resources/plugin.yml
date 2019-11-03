@@ -7,3 +7,6 @@ commands:
   info:
     description: Displays rules and gameplay information of BedHunt
     usage: /info
+  cube:
+    description: Test
+
