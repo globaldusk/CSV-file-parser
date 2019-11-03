@@ -1,6 +1,6 @@
 package mc.samios.io.BedHunt.cmd;
 
-import mc.samios.io.BedHunt.lobby.Cuboid;
+
 import mc.samios.io.BedHunt.util.C;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
