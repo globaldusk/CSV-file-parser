@@ -26,6 +26,5 @@ public class CraftingBlacklistEvent implements Listener{
                 }
             }
         }
-
     }
 }
