@@ -1,10 +1,7 @@
 package mc.samios.io.BedHunt;
 
 import mc.samios.io.BedHunt.cmd.*;
-import mc.samios.io.BedHunt.event.BedPlacedEvent;
-import mc.samios.io.BedHunt.event.CraftingBlacklistEvent;
-import mc.samios.io.BedHunt.event.DestroyBedEvent;
-import mc.samios.io.BedHunt.event.JoinQuitEvent;
+import mc.samios.io.BedHunt.event.*;
 import mc.samios.io.BedHunt.team.Scoreboard;
 import mc.samios.io.BedHunt.util.C;
 import org.bukkit.Bukkit;
@@ -64,6 +61,7 @@ public class Main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(new BedPlacedEvent(), this);
         this.getServer().getPluginManager().registerEvents(new DestroyBedEvent(), this);
         this.getServer().getPluginManager().registerEvents(new CraftingBlacklistEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new BlockNextToBedEvent(), this);
 
     }
 
