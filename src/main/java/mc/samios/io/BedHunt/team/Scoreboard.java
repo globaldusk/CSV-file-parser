@@ -16,10 +16,13 @@ public class Scoreboard implements Listener {
     private void createLobbyScoreboard(Player player) {
         ScoreHelper helper = ScoreHelper.createScore(player);
         helper.setTitle("&b&lBed Hunt");
-        helper.setSlot(5, "&7&m--------------------------------");
-        helper.setSlot(4, "&eStatus: &fWaiting for playersss");
-        helper.setSlot(3, "&b" + remaining + "&e more players before start..");
-        helper.setSlot(2, "&ePlayers: &a" + Bukkit.getOnlinePlayers().size() + "&f/10");
+        helper.setSlot(8, "&7&m--------------------------------");
+        helper.setSlot(7, "&eStatus: &fWaiting....");
+        helper.setSlot(6, "&b" + remaining + "&e more players until start");
+        helper.setSlot(5, "&ePlayers: &a" + Bukkit.getOnlinePlayers().size() + "&f/10");
+        helper.setSlot(4, " ");
+        helper.setSlot(3, "&eFor information type &b/info");
+        helper.setSlot(2, "&eBedHunt v0.1");
         helper.setSlot(1, "&7&m--------------------------------");
     }
 
@@ -29,8 +32,8 @@ public class Scoreboard implements Listener {
         if(ScoreHelper.hasScore(player)) {
             ScoreHelper helper = ScoreHelper.getByPlayer(player);
             int players = Bukkit.getOnlinePlayers().size();
-            helper.setSlot(2, "&ePlayers: &a" + players + "&f/10");
-            helper.setSlot(3, "&b" + remaining + "&e more players before start..");
+            helper.setSlot(6, "&b" + remaining + "&e more players until start");
+            helper.setSlot(5, "&ePlayers: &a" + players + "&f/10");
         }
     }
 

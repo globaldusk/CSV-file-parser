@@ -16,6 +16,7 @@ public class JoinQuitEvent implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         event.setJoinMessage(C.prefix("Join", player.getDisplayName()));
+
     }
 
     @EventHandler
