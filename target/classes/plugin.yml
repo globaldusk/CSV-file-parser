@@ -15,4 +15,8 @@ commands:
   deathmatch:
     description: Destroys all beds and begins deathmatch stage (where nobody can respawn and border shrinks)
     aliases: [dm]
+  rules:
+    description: Shows the BedHunt rules
+  gameplay:
+    description: Shows the BedHunt gameplay instructions.
 

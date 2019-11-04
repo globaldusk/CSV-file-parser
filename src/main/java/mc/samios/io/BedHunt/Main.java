@@ -1,8 +1,6 @@
 package mc.samios.io.BedHunt;
 
-import mc.samios.io.BedHunt.cmd.CubeCommand;
-import mc.samios.io.BedHunt.cmd.InfoCommand;
-import mc.samios.io.BedHunt.cmd.RemoveBedCommand;
+import mc.samios.io.BedHunt.cmd.*;
 import mc.samios.io.BedHunt.event.BedPlacedEvent;
 import mc.samios.io.BedHunt.event.DestroyBedEvent;
 import mc.samios.io.BedHunt.event.JoinQuitEvent;
@@ -71,6 +69,8 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("info").setExecutor(new InfoCommand());
         getCommand("cube").setExecutor(new CubeCommand());
         getCommand("removebed").setExecutor(new RemoveBedCommand());
+        getCommand("rules").setExecutor(new RulesCommand());
+        getCommand("gameplay").setExecutor(new GameplayCommand());
     }
 
     public static boolean checkBed(Block bed) {
