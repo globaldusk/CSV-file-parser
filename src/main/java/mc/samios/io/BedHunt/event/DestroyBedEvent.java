@@ -21,6 +21,7 @@ public class DestroyBedEvent implements Listener {
             e.getPlayer().sendMessage("no");
             // if enemy bed, destroy
         } else {
+            // do nothing
         }
     }
 }
