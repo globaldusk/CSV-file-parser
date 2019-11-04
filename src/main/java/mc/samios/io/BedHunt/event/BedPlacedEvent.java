@@ -17,7 +17,7 @@ public class BedPlacedEvent implements Listener {
 
         Player player = e.getPlayer();
         Block block = e.getBlock();
-        if (Main.getInstance().checkBed(block)) {
+        if (Main.checkBed(block)) {
             Location loc1 = e.getBlock().getLocation();
             // here we need to save where the bed is, so it can be destroyed for deathmatch (or modifier where there is no deathmatch, but it reveals location)
 
@@ -31,7 +31,7 @@ public class BedPlacedEvent implements Listener {
         Player player = e.getPlayer();
         Block block = e.getClickedBlock();
         if (block != null){
-            if (Main.getInstance().checkBed(block)) {
+            if (Main.checkBed(block)) {
                 e.setCancelled(true);
             }
         }
