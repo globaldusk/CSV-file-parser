@@ -9,4 +9,10 @@ commands:
     usage: /info
   cube:
     description: Test
+  removebed:
+    description: Removes a bed
+    aliases: [rb]
+  deathmatch:
+    description: Destroys all beds and begins deathmatch stage (where nobody can respawn and border shrinks)
+    aliases: [dm]
 
