@@ -1,10 +1,11 @@
 package mc.samios.io.BedHunt.event;
 
 import mc.samios.io.BedHunt.Main;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.type.Bed;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,29 +18,208 @@ public class BedPlacedEvent implements Listener {
 
         Player player = e.getPlayer();
         Block block = e.getBlock();
-        if (Main.getInstance().checkBed(block)) {
+        if (Main.checkBed(block)) {
             Location loc1 = e.getBlock().getLocation();
-            // here we need to save where the bed is, so it can be destroyed for deathmatch (or modifier where there is no deathmatch, but it reveals location)
 
-            player.setBedSpawnLocation(loc1);
-            player.sendMessage("Team spawn set");
+            int above = block.getY() + 1;
+            int side1 = block.getX() + 1;
+            int side2 = block.getX() - 1;
+            int side3 = block.getZ() + 1;
+            int side4 = block.getZ() - 1;
+
+            if (player.getFacing().equals(BlockFace.WEST)){
+                side1 = block.getX() - 2;
+            }
+            else if (player.getFacing().equals(BlockFace.EAST)){
+                side2 = block.getX() + 2;
+            }
+            else if (player.getFacing().equals(BlockFace.SOUTH)){
+                side3 = block.getZ() + 2;
+            }
+            else if (player.getFacing().equals(BlockFace.NORTH)){
+                side4 = block.getZ() - 2;
+            }
+
+            if (loc1.getY() <= 40) {
+                e.setCancelled(true);
+                player.sendMessage(ChatColor.RED + "You cannot place the bed this deep!");
+            }
+            else{
+                loc1.setX(side1);
+                if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                    loc1.setX(side2);
+
+                    if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                        loc1.setX(block.getX());
+                        loc1.setZ(side3);
+
+                        if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                            loc1.setZ(side4);
+
+                            if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                loc1.setZ(block.getZ());
+                                loc1.setY(above);
+
+                                if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                    loc1.setY(block.getY());
+                                    loc1.setX(side1);
+                                    loc1.setZ(side3);
+
+                                    if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                        loc1.setX(side2);
+                                        loc1.setZ(side4);
+
+                                        if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                            loc1.setX(side1);
+                                            loc1.setZ(side4);
+
+                                            if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                                loc1.setX(side2);
+                                                loc1.setZ(side3);
+
+                                                if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+
+                                                    loc1.setY(above);
+                                                    loc1.setX(side1);
+                                                    if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                                        loc1.setX(side2);
+
+                                                        if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                                            loc1.setX(block.getX());
+                                                            loc1.setZ(side3);
+
+                                                            if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                                                loc1.setZ(side4);
+
+                                                                if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                                                    loc1.setZ(block.getZ());
+                                                                    loc1.setY(above);
+
+                                                                    if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                                                        loc1.setX(side1);
+                                                                        loc1.setZ(side3);
+
+                                                                        if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                                                            loc1.setX(side2);
+                                                                            loc1.setZ(side4);
+
+                                                                            if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                                                                loc1.setX(side1);
+                                                                                loc1.setZ(side4);
+
+                                                                                if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                                                                    loc1.setX(side2);
+                                                                                    loc1.setZ(side3);
+
+                                                                                    if (loc1.getBlock().getType().equals(Material.AIR) || Main.checkBed(block)) {
+                                                                                        player.setBedSpawnLocation(block.getLocation());
+                                                                                        player.sendMessage(ChatColor.GOLD + "Team spawn set");
+
+                                                                                    }
+                                                                                    else{
+                                                                                        e.setCancelled(true);
+                                                                                        player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                                                                    }
+                                                                                }
+                                                                                else{
+                                                                                    e.setCancelled(true);
+                                                                                    player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                                                                }
+                                                                            }
+                                                                            else{
+                                                                                e.setCancelled(true);
+                                                                                player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                                                            }
+                                                                        }
+                                                                        else{
+                                                                            e.setCancelled(true);
+                                                                            player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                                                        }
+                                                                    }
+                                                                    else{
+                                                                        e.setCancelled(true);
+                                                                        player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                                                    }
+                                                                }
+                                                                else{
+                                                                    e.setCancelled(true);
+                                                                    player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                                                }
+                                                            }
+                                                            else{
+                                                                e.setCancelled(true);
+                                                                player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                                            }
+                                                        }
+                                                        else{
+                                                            e.setCancelled(true);
+                                                            player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                                        }
+                                                    }
+                                                    else{
+                                                        e.setCancelled(true);
+                                                        player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                                    }
+
+                                                }
+                                                else{
+                                                    e.setCancelled(true);
+                                                    player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                                }
+                                            }
+                                            else{
+                                                e.setCancelled(true);
+                                                player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                            }
+                                        }
+                                        else{
+                                            e.setCancelled(true);
+                                            player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                        }
+                                    }
+                                    else{
+                                        e.setCancelled(true);
+                                        player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                    }
+                                }
+                                else{
+                                    e.setCancelled(true);
+                                    player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                                }
+                            }
+                            else{
+                                e.setCancelled(true);
+                                player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                            }
+                        }
+                        else{
+                            e.setCancelled(true);
+                            player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                        }
+                    }
+                    else{
+                        e.setCancelled(true);
+                        player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                    }
+                }
+                else{
+                    e.setCancelled(true);
+                    player.sendMessage(ChatColor.RED + "Blocks are too close to the bed!");
+                }
+            }
         }
     }
+
+
 
     @EventHandler
     public void sleep(PlayerInteractEvent e) {
         Player player = e.getPlayer();
         Block block = e.getClickedBlock();
         if (block != null){
-            if (Main.getInstance().checkBed(block)) {
+            if (block.getType().equals(Material.BLACK_BED) || block.getType().equals(Material.LIME_BED) || block.getType().equals(Material.BLUE_BED) || block.getType().equals(Material.BROWN_BED) || block.getType().equals(Material.CYAN_BED) || block.getType().equals(Material.GRAY_BED) || block.getType().equals(Material.GREEN_BED) || block.getType().equals(Material.LIGHT_BLUE_BED) || block.getType().equals(Material.LIGHT_GRAY_BED) || block.getType().equals(Material.MAGENTA_BED) || block.getType().equals(Material.YELLOW_BED) || block.getType().equals(Material.WHITE_BED) || block.getType().equals(Material.RED_BED) || block.getType().equals(Material.PINK_BED) ||block.getType().equals(Material.PURPLE_BED) ||block.getType().equals(Material.ORANGE_BED)) {
                 e.setCancelled(true);
             }
         }
-    }
-
-    public void saveLocation(Location bedLocation) {
-        // here we get the block of the bed, and destroy it.
-        // as it is a bed and has two blocks, we may as well
-
     }
 }
