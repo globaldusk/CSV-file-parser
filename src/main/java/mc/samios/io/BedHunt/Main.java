@@ -62,6 +62,7 @@ public class Main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(new Scoreboard(), this);
         this.getServer().getPluginManager().registerEvents(new BedPlacedEvent(), this);
         this.getServer().getPluginManager().registerEvents(new DestroyBedEvent(), this);
+
     }
 
     public void registerCommands() {
