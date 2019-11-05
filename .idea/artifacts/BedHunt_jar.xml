@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="BedHunt:jar">
-    <output-path>$USER_HOME$/Desktop</output-path>
+    <output-path>$PROJECT_DIR$/../../../</output-path>
     <root id="archive" name="BedHunt.jar">
-      <element id="module-output" name="IdeaProjects" />
+      <element id="module-output" name="BedHunt" />
     </root>
   </artifact>
 </component>
