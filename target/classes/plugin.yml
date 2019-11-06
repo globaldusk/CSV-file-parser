@@ -19,4 +19,9 @@ commands:
     description: Shows the BedHunt rules
   gameplay:
     description: Shows the BedHunt gameplay instructions.
+  modifier:
+    description: Allows enabling/disabling of game modifiers. Admin only.
+    aliases: [md]
+  game:
+    description: Allows game to be started and stopped via an Admin.
 
