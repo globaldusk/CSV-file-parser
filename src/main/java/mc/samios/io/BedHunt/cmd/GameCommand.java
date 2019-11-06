@@ -17,16 +17,16 @@ public class GameCommand implements CommandExecutor {
                 player.sendMessage(C.prefix("Game", "Usage: /game <start|stop|restart>"));
             }
             else if (args.length == 1) {
-                if (args[0] == "start") {
+                if (args[0].equalsIgnoreCase("start")) {
                     // start game
-                    if (GameEvents.gameStarted == false) {
+                    if (!GameEvents.gameStarted) {
                         player.sendMessage(C.prefix("Game", "You have successfully force-started the game countdown!"));
                         GameEvents.forceStartGame();
-                    } else {
+                    } else if (GameEvents.gameStarted) {
                         // game has already started
                         player.sendMessage(C.error("Error", "Game has already started!"));
                     }
-                } else if (args[0] == "stop") {
+                } else if (args[0].equalsIgnoreCase("stop")) {
                     // stop game
                     // if game hasn't started then don't do anything.
                     if (GameEvents.gameStarted == false) {
@@ -36,7 +36,7 @@ public class GameCommand implements CommandExecutor {
                         player.sendMessage(C.prefix("Game", "You have succesfully force-stopped the game!"));
                         GameEvents.forceStopGame();
                     }
-                } else if (args[0] == "restart") {
+                } else if (args[0].equalsIgnoreCase("restart")) {
                     // restart game
                     player.sendMessage(C.prefix("Game", ""));
                 }

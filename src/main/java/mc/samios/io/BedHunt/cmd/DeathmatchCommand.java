@@ -13,11 +13,17 @@ public class DeathmatchCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
         Player player = (Player) sender;
         if (player.isOp()) {
-            player.sendMessage(C.prefix("Deathmatch", "Are you sure you want to start deathmatch now? Type " + C.green + "/deathmatch confirm" + C.yellow + " to confirm."));
-            if (args.length == 1 && args[0] == "confirm") {
-                // start deathmatch
-                player.sendMessage(C.prefix("Deathmatch", "You have started the Deathmatch stage!"));
-                Bukkit.broadcastMessage(C.prefix("Deathmatch", C.red + C.bold + "The deathmatch stage has started early and will begin in 30 seconds."));
+            if (args.length == 0) {
+                player.sendMessage(C.prefix("Deathmatch", "Are you sure you want to start deathmatch now? Type " + C.green + "/deathmatch confirm" + C.yellow + " to confirm."));
+            }
+            else if (args.length == 1) {
+                if (args[0].equalsIgnoreCase("confirm")) {
+                    // start deathmatch
+                    player.sendMessage(C.prefix("Deathmatch", "You have started the Deathmatch stage!"));
+                    Bukkit.broadcastMessage(C.prefix("Deathmatch", C.red + C.bold + "The deathmatch stage has started early and will begin in 30 seconds."));
+                } else {
+                    player.sendMessage(C.prefix("Deathmatch", "Are you sure you want to start deathmatch now? Type " + C.green + "/deathmatch confirm" + C.yellow + " to confirm."));
+                }
             }
         } else {
             player.sendMessage(C.error("Permissions", "You are not allowed to do this."));

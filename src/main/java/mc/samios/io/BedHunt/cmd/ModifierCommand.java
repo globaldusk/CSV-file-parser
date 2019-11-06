@@ -30,34 +30,34 @@ public class ModifierCommand implements CommandExecutor {
                 p.sendMessage(C.prefix("Available Modifiers", "DOUBLEHEALTH" + spacer + "TWOBEDS" + spacer + "FRIENDLYFIRE" + spacer + "MYSTERY" + spacer + "SHORT" + spacer + "NOGRACE" + spacer + "POWERUP"));
             }
             if (args.length >= 2) {
-                if (args[1] == "DOUBLEHEALTH") {
-                    if (args[2] == "true") {
+                if (args[0].equalsIgnoreCase("DOUBLEHEALTH")) {
+                    if (args[1].equalsIgnoreCase("true")) {
                         p.sendMessage(C.prefix("Modifier", "Double Heath Modifier enabled successfully!"));
                         Bukkit.broadcastMessage(C.prefix("Modifier", "Double Health Modifier has been enabled! All players will be given Double Heath!"));
                         growl();
-                    } else if (args[2] == "false") {
+                    } else if (args[1].equalsIgnoreCase("false")) {
                         p.sendMessage(C.prefix("Modifier", "Double Heath Modifier disabled successfully!"));
                         Bukkit.broadcastMessage(C.prefix("Modifier", "Double Health Modifier has been disabled!"));
                     } else {
                         p.sendMessage(C.error("Modifier", "Please specify either true or false for DOUBLE HEALTH."));
                     }
-                } else if (args[1] == "TWOBEDS") {
-                    if (args[2] == "true") {
+                } else if (args[0].equalsIgnoreCase("TWOBEDS")) {
+                    if (args[1].equalsIgnoreCase("true")) {
                         p.sendMessage(C.prefix("Modifier", "Two Beds Modifier enabled successfully!"));
                         Bukkit.broadcastMessage(C.prefix("Modifier", "Two Beds Modifier has been enabled! Each team will be given two beds, meaning each player can set their own spawnpoint. Individual team beds must be within 100 blocks of eachother!"));
                         growl();
-                    } else if (args[2] == "false") {
+                    } else if (args[1].equalsIgnoreCase("false")) {
                         p.sendMessage(C.prefix("Modifier", "Two Beds Modifier disabled successfully!"));
                         Bukkit.broadcastMessage(C.prefix("Modifier", "Two Beds Modifier has been disabled!"));
                     } else {
                         p.sendMessage(C.error("Modifier", "Please specify either true or false for TWO BEDS."));
                     }
-                } else if (args[1] == "FRIENDLYFIRE") {
-                    if (args[2] == "true") {
+                } else if (args[0].equalsIgnoreCase("FRIENDLYFIRE")) {
+                    if (args[1].equalsIgnoreCase("true")) {
                         p.sendMessage(C.prefix("Modifier", "Friendly Fire Modifier enabled successfully!"));
                         Bukkit.broadcastMessage(C.prefix("Modifier", "Friendly Fire Modifier has been enabled! You will be able to harm your teammate, but by doing so you will be punished... Be careful!"));
                         growl();
-                    } else if (args[2] == "false") {
+                    } else if (args[1].equalsIgnoreCase("false")) {
                         p.sendMessage(C.prefix("Modifier", "Friendly Fire Modifier disabled successfully!"));
                         Bukkit.broadcastMessage(C.prefix("Modifier", "Friendly Fire Modifier has been disabled!"));
                     } else {

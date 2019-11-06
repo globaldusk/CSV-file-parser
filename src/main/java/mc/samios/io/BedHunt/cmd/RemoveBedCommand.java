@@ -34,7 +34,7 @@ public class RemoveBedCommand implements CommandExecutor {
                 } else {
                     player.sendMessage(C.staff("Admin", "You are not looking at a bed!"));
                 }
-            } if (args.length == 1 && args[0] == "all") {
+            } if (args.length == 1 && args[0].equalsIgnoreCase("all")) {
                 // remove all beds
             } // add method for removing individual team beds
         } else {
