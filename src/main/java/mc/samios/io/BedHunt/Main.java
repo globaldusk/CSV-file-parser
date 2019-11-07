@@ -16,9 +16,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 
-import static mc.samios.io.BedHunt.event.JoinQuitEvent.checkPlayers;
-import static mc.samios.io.BedHunt.event.JoinQuitEvent.players;
-
 public class Main extends JavaPlugin implements Listener {
 
     private static Main instance;
@@ -49,11 +46,12 @@ public class Main extends JavaPlugin implements Listener {
         new BukkitRunnable() {
             public void run() {
                 for (final Player player : Bukkit.getOnlinePlayers()) {
-                    if (GameEvents.gameStarted == false) {
+                    if (!GameEvents.gameStarted) {
                         Scoreboard.updateLobbyScoreboard(player);
-                    } else {
+                    } else if (GameEvents.gameStarted) {
                         // remove lobby scoreboard
                         // add game scoreboard
+                        // this might cancel tho
                     }
                 }
             }

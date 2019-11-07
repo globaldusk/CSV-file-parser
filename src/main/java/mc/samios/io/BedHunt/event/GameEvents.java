@@ -12,6 +12,9 @@ public class GameEvents implements Listener {
 
     public static void startGame() {
         // Here we move the players from lobby
+        sortTeams();
+
+
     }
 
     public static void forceStartGame() {
