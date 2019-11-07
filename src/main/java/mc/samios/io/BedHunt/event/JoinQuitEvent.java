@@ -52,6 +52,7 @@ public class JoinQuitEvent implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
         Player player = e.getPlayer();
+        Main.PlayersWaiting.remove(player.getDisplayName());
         e.setQuitMessage(C.error("Quit", player.getDisplayName()));
         players--;
         Bukkit.getConsoleSender().sendMessage("Players: " + players);
