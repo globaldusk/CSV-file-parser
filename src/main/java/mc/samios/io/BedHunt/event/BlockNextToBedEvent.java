@@ -15,7 +15,7 @@ public class BlockNextToBedEvent implements Listener {
         Player player = e.getPlayer();
         Block block = e.getBlock();
         Location loc1 = e.getBlock().getLocation();
-        
+
         int below = block.getY() - 1;
         int side1 = block.getX() + 1;
         int side2 = block.getX() - 1;
