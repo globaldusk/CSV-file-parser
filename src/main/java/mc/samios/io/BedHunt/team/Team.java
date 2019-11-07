@@ -40,7 +40,7 @@ public class Team {
 
 
 
-    public static void teamsort{
+    public static void teamsort(){
         Main.PlayersPlaying.addAll(Main.PlayersWaiting);
         Main.PlayersWaiting.clear();
 
@@ -63,48 +63,55 @@ public class Team {
                         teamsActive += 1;
                         Main.Boomers.add(p);
                         assigned = true;
+                        Bukkit.broadcastMessage(p+"is on the Boomers team");
                     }
                 }
-                if (TeamSelector == 2 && Main.Boomers.size() < 2){
+                if (TeamSelector == 2 && Main.Clowns.size() < 2){
                     if (teamsActive == cap && Main.Clowns.size() > 0){
                         teamsActive += 1;
                         Main.Clowns.add(p);
                         assigned = true;
+                        Bukkit.broadcastMessage(p+"is on the Clowns team");
                     }
                 }
-                if (TeamSelector == 3 && Main.Boomers.size() < 2){
+                if (TeamSelector == 3 && Main.Mutants.size() < 2){
                     if (teamsActive == cap && Main.Mutants.size() > 0){
                         teamsActive += 1;
                         Main.Mutants.add(p);
                         assigned = true;
+                        Bukkit.broadcastMessage(p+"is on the Mutants team");
                     }
                 }
-                if (TeamSelector == 4 && Main.Boomers.size() < 2){
+                if (TeamSelector == 4 && Main.Gamers.size() < 2){
                     if (teamsActive == cap && Main.Gamers.size() > 0){
                         teamsActive += 1;
                         Main.Gamers.add(p);
                         assigned = true;
+                        Bukkit.broadcastMessage(p+"is on the Gamers team");
                     }
                 }
-                if (TeamSelector == 5 && Main.Boomers.size() < 2){
+                if (TeamSelector == 5 && Main.Nerds.size() < 2){
                     if (teamsActive == cap && Main.Nerds.size() > 0){
                         teamsActive += 1;
                         Main.Nerds.add(p);
                         assigned = true;
+                        Bukkit.broadcastMessage(p+"is on the Nerds team");
                     }
                 }
-                if (TeamSelector == 6 && Main.Boomers.size() < 2){
+                if (TeamSelector == 6 && Main.Cripples.size() < 2){
                     if (teamsActive == cap && Main.Cripples.size() > 0){
                         teamsActive += 1;
                         Main.Cripples.add(p);
                         assigned = true;
+                        Bukkit.broadcastMessage(p+"is on the Cripples team");
                     }
                 }
-                if (TeamSelector == 7 && Main.Boomers.size() < 2){
+                if (TeamSelector == 7 && Main.Underdogs.size() < 2){
                     if (teamsActive == cap && Main.Underdogs.size() > 0){
                         teamsActive += 1;
                         Main.Underdogs.add(p);
                         assigned = true;
+                        Bukkit.broadcastMessage(p+"is on the Underdogs team");
                     }
                 }
             }

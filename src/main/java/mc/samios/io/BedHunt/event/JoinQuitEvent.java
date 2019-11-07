@@ -82,7 +82,6 @@ public class JoinQuitEvent implements Listener {
                     } else {
                         count--;
                         if (count<=10) {
-                            Team.teamsort();//CALL IT HERE
                             Bukkit.broadcastMessage(C.green + C.bold + "Game starting in " + count + " seconds..");
                             for (Player pl : Bukkit.getOnlinePlayers()) {
                                 pl.playSound(pl.getLocation(), Sound.BLOCK_STONE_BUTTON_CLICK_ON, 5, 2);
