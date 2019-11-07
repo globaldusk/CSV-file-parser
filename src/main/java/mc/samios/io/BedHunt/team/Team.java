@@ -40,7 +40,7 @@ public class Team {
 
 
 
-    private void teamsort{
+    public static void teamsort{
         Main.PlayersPlaying.addAll(Main.PlayersWaiting);
         Main.PlayersWaiting.clear();
 
@@ -59,49 +59,49 @@ public class Team {
             while (assigned == false){
                 TeamSelector = rand.nextInt(7);
                 if (TeamSelector == 1 && Main.Boomers.size() < 2){
-                    if (teamsActive == 5 && Main.Boomers.size() > 0){
+                    if (teamsActive == cap && Main.Boomers.size() > 0){
                         teamsActive += 1;
                         Main.Boomers.add(p);
                         assigned = true;
                     }
                 }
                 if (TeamSelector == 2 && Main.Boomers.size() < 2){
-                    if (teamsActive == 5 && Main.Clowns.size() > 0){
+                    if (teamsActive == cap && Main.Clowns.size() > 0){
                         teamsActive += 1;
                         Main.Clowns.add(p);
                         assigned = true;
                     }
                 }
                 if (TeamSelector == 3 && Main.Boomers.size() < 2){
-                    if (teamsActive == 5 && Main.Mutants.size() > 0){
+                    if (teamsActive == cap && Main.Mutants.size() > 0){
                         teamsActive += 1;
                         Main.Mutants.add(p);
                         assigned = true;
                     }
                 }
                 if (TeamSelector == 4 && Main.Boomers.size() < 2){
-                    if (teamsActive == 5 && Main.Gamers.size() > 0){
+                    if (teamsActive == cap && Main.Gamers.size() > 0){
                         teamsActive += 1;
                         Main.Gamers.add(p);
                         assigned = true;
                     }
                 }
                 if (TeamSelector == 5 && Main.Boomers.size() < 2){
-                    if (teamsActive == 5 && Main.Nerds.size() > 0){
+                    if (teamsActive == cap && Main.Nerds.size() > 0){
                         teamsActive += 1;
                         Main.Nerds.add(p);
                         assigned = true;
                     }
                 }
                 if (TeamSelector == 6 && Main.Boomers.size() < 2){
-                    if (teamsActive == 5 && Main.Cripples.size() > 0){
+                    if (teamsActive == cap && Main.Cripples.size() > 0){
                         teamsActive += 1;
                         Main.Cripples.add(p);
                         assigned = true;
                     }
                 }
                 if (TeamSelector == 7 && Main.Boomers.size() < 2){
-                    if (teamsActive == 5 && Main.Underdogs.size() > 0){
+                    if (teamsActive == cap && Main.Underdogs.size() > 0){
                         teamsActive += 1;
                         Main.Underdogs.add(p);
                         assigned = true;
