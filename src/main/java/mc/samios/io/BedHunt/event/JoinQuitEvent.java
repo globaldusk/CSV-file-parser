@@ -14,6 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.*;
 
 import java.util.UUID;
@@ -57,10 +58,10 @@ public class JoinQuitEvent implements Listener {
         }
     }
     public static int count = 30;
+    public int stop;
 
     public void startCounter() {
         if (players >= 1) {
-            //Bukkit.broadcastMessage("Game starting in " + count + " seconds..");
             new BukkitRunnable() {
 
                 @Override
@@ -68,15 +69,14 @@ public class JoinQuitEvent implements Listener {
                     if (players < 1) {
                         Bukkit.broadcastMessage(C.error("Bed Hunt", "Not enough players. Required players to start: " + C.green + (2 - Bukkit.getOnlinePlayers().size())));
                         waiting = false;
-                        cancel(); // Cancels timer
+                        this.cancel(); // Cancels timer
                         count = 30; // Resets timer
                     }
                     else if (count == 0) {
                         // Start game method
                         GameEvents.startGame();
-                        cancel(); // Cancels timer
+                        this.cancel(); // Cancels timer
                         count = 30; // Resets timer
-                        Bukkit.getServer().getScheduler().cancelTasks(Main.getInstance());
                     } else {
                         count--;
                         if (count<=10) {
@@ -85,11 +85,11 @@ public class JoinQuitEvent implements Listener {
                                 pl.playSound(pl.getLocation(), Sound.BLOCK_STONE_BUTTON_CLICK_ON, 5, 2);
                             }
                         }
-                        if (count<=5) {
+                        /*if (count<=5) {
                             for (Player pl : Bukkit.getOnlinePlayers()) {
                                 pl.sendTitle(C.red + count, C.yellow + "Good luck!");
                             }
-                        }
+                        } */
                     }
                 }
             }.runTaskTimer(Bukkit.getServer().getPluginManager().getPlugin("BedHunt"), 20L, 20L);
@@ -98,6 +98,7 @@ public class JoinQuitEvent implements Listener {
         }
 
     }
+
 
 
 }

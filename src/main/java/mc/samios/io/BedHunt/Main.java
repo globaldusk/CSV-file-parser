@@ -71,6 +71,7 @@ public class Main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(new JoinQuitEvent(), this);
         this.getServer().getPluginManager().registerEvents(new Scoreboard(), this);
         this.getServer().getPluginManager().registerEvents(new BedPlacedEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new BlockNextToBedEvent(), this);
         this.getServer().getPluginManager().registerEvents(new DestroyBedEvent(), this);
         this.getServer().getPluginManager().registerEvents(new GameEvents(), this);
         this.getServer().getPluginManager().registerEvents(new FriendlyFireListener(), this);

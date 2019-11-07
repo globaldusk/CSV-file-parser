@@ -14,7 +14,6 @@ public class GameEvents implements Listener {
         // Here we move the players from lobby
         sortTeams();
 
-
     }
 
     public static void forceStartGame() {
@@ -42,8 +41,9 @@ public class GameEvents implements Listener {
         // we take see how many players are in the lobby and divide it by 2 for the team number.
         int players = Bukkit.getOnlinePlayers().size();
         int teams = players/2;
-        PickTeams.pick(teams);
-        System.out.println(teams);
+
+        //PickTeams.pick(teams);
+        //System.out.println(teams);
     }
 
 
