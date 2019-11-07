@@ -2,6 +2,7 @@ package mc.samios.io.BedHunt.event;
 
 import mc.samios.io.BedHunt.Main;
 import mc.samios.io.BedHunt.team.PickTeams;
+import mc.samios.io.BedHunt.team.Team;
 import mc.samios.io.BedHunt.util.C;
 import mc.samios.io.BedHunt.util.FileManager;
 import org.bukkit.Bukkit;
@@ -33,6 +34,7 @@ public class JoinQuitEvent implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         e.setJoinMessage(C.prefix("Join", player.getDisplayName()));
+        Main.PlayersPlaying.add(player.getDisplayName());
         // add 1 player to players int to check when limit is reached (10);
         players++;
         Bukkit.getConsoleSender().sendMessage("Players: " + players);
@@ -50,6 +52,12 @@ public class JoinQuitEvent implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
         Player player = e.getPlayer();
+        for (int check = 0; check < Main.PlayersPlaying.size(); check++){
+            if (Main.PlayersPlaying.get(check) == player.getDisplayName()){
+                Main.PlayersPlaying.remove(check);
+            }
+        }
+        Main.PlayersWaiting.remove(player.getDisplayName());
         e.setQuitMessage(C.error("Quit", player.getDisplayName()));
         players--;
         Bukkit.getConsoleSender().sendMessage("Players: " + players);

@@ -15,17 +15,39 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends JavaPlugin implements Listener {
 
     private static Main instance;
     public static ArrayList<Material> beds = new ArrayList<>();
     static FileManager fm;
-    public static ArrayList<Player> Teamwaiting;
+    public static List<String> PlayersWaiting;
+    public static List<String> PlayersPlaying;
+
+    //TEAMS
+    public static List<String> Boomers;
+    public static List<String> Clowns;
+    public static List<String> Nerds;
+    public static List<String> Mutants;
+    public static List<String> Cripples;
+    public static List<String> Underdogs;
+    public static List<String> Gamers;
+
 
     static {
         Main.fm = FileManager.getInstance();
-        Main.Teamwaiting = new ArrayList<Player>();
+        Main.PlayersWaiting = new ArrayList<String>();
+        Main.PlayersPlaying = new ArrayList<String>();
+
+        //TEAMS
+        Main.Boomers = new ArrayList<String>();
+        Main.Clowns = new ArrayList<String>();
+        Main.Nerds = new ArrayList<String>();
+        Main.Mutants = new ArrayList<String>();
+        Main.Cripples = new ArrayList<String>();
+        Main.Underdogs = new ArrayList<String>();
+        Main.Gamers = new ArrayList<String>();
     }
 
     public static Main getInstance() {

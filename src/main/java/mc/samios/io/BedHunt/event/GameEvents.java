@@ -1,6 +1,7 @@
 package mc.samios.io.BedHunt.event;
 
 import mc.samios.io.BedHunt.team.PickTeams;
+import mc.samios.io.BedHunt.team.Team;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
@@ -12,7 +13,7 @@ public class GameEvents implements Listener {
 
     public static void startGame() {
         // Here we move the players from lobby
-        sortTeams();
+        Team.teamsort();
 
     }
 
