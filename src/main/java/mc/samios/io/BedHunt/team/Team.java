@@ -51,9 +51,11 @@ public class Team {
         {
             Random rand = new Random();
             int TeamSelector = 0;
+            assigned = false;
 
             String p = Main.PlayersPlaying.get(assign);
-            Bukkit.broadcastMessage(p);
+            //Bukkit.broadcastMessage(p);
+            //Bukkit.broadcastMessage(Main.PlayersPlaying.toString());
             while (!assigned){
                 TeamSelector = rand.nextInt(7);
                 if (TeamSelector == 1 && Main.Boomers.size() < 2){

@@ -34,7 +34,7 @@ public class JoinQuitEvent implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         e.setJoinMessage(C.prefix("Join", player.getDisplayName()));
-        Main.PlayersWaiting.add(player.getDisplayName());
+        Main.PlayersPlaying.add(player.getDisplayName());
         // add 1 player to players int to check when limit is reached (10);
         players++;
         Bukkit.getConsoleSender().sendMessage("Players: " + players);
