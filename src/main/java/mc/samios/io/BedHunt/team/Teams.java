@@ -2,13 +2,13 @@ package mc.samios.io.BedHunt.team;
 
 import mc.samios.io.BedHunt.util.C;
 
-public enum Teams {
+//public enum Teams {
 
-    BOOMERS,
-    GAMERS,
-    UNDERDOGS,
-    CLOWNS,
-    CRIPPLES,
-    NERDS,
-    MUTANTS;
-}
+   /// BOOMERS,
+    //GAMERS,
+   // UNDERDOGS,
+   // CLOWNS,
+  //  CRIPPLES,
+  //  NERDS,
+    //MUTANTS;
+//}

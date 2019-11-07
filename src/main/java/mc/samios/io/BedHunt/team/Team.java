@@ -1,10 +1,13 @@
 package mc.samios.io.BedHunt.team;
 
+import mc.samios.io.BedHunt.Main;
 import mc.samios.io.BedHunt.util.FileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 import java.util.List;
+import java.util.Random;
 
 public class Team {
 
@@ -33,6 +36,79 @@ public class Team {
 
     public boolean friendlyFire() {
         return this.fm.getTeams().getString(String.valueOf(this.name) + ".ff").equalsIgnoreCase("true");
+    }
+
+
+
+    private void teamsort{
+        Main.PlayersPlaying.addAll(Main.PlayersWaiting);
+        Main.PlayersWaiting.clear();
+
+        float calc = (float)(Main.PlayersPlaying.size() / 2);
+        int cap = (int)calc;
+        int teamsActive = 0;
+        boolean assigned = false;
+
+        for (int assign = 0; assign < Main.PlayersPlaying.size(); assign++)
+        {
+            Random rand = new Random();
+            int TeamSelector = 0;
+
+            String p = Main.PlayersPlaying.get(assign);
+
+            while (assigned == false){
+                TeamSelector = rand.nextInt(7);
+                if (TeamSelector == 1 && Main.Boomers.size() < 2){
+                    if (teamsActive == 5 && Main.Boomers.size() > 0){
+                        teamsActive += 1;
+                        Main.Boomers.add(p);
+                        assigned = true;
+                    }
+                }
+                if (TeamSelector == 2 && Main.Boomers.size() < 2){
+                    if (teamsActive == 5 && Main.Clowns.size() > 0){
+                        teamsActive += 1;
+                        Main.Clowns.add(p);
+                        assigned = true;
+                    }
+                }
+                if (TeamSelector == 3 && Main.Boomers.size() < 2){
+                    if (teamsActive == 5 && Main.Mutants.size() > 0){
+                        teamsActive += 1;
+                        Main.Mutants.add(p);
+                        assigned = true;
+                    }
+                }
+                if (TeamSelector == 4 && Main.Boomers.size() < 2){
+                    if (teamsActive == 5 && Main.Gamers.size() > 0){
+                        teamsActive += 1;
+                        Main.Gamers.add(p);
+                        assigned = true;
+                    }
+                }
+                if (TeamSelector == 5 && Main.Boomers.size() < 2){
+                    if (teamsActive == 5 && Main.Nerds.size() > 0){
+                        teamsActive += 1;
+                        Main.Nerds.add(p);
+                        assigned = true;
+                    }
+                }
+                if (TeamSelector == 6 && Main.Boomers.size() < 2){
+                    if (teamsActive == 5 && Main.Cripples.size() > 0){
+                        teamsActive += 1;
+                        Main.Cripples.add(p);
+                        assigned = true;
+                    }
+                }
+                if (TeamSelector == 7 && Main.Boomers.size() < 2){
+                    if (teamsActive == 5 && Main.Underdogs.size() > 0){
+                        teamsActive += 1;
+                        Main.Underdogs.add(p);
+                        assigned = true;
+                    }
+                }
+            }
+        }
     }
 
     public Location getBedLocation() {

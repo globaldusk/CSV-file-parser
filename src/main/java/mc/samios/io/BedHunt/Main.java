@@ -21,11 +21,32 @@ public class Main extends JavaPlugin implements Listener {
     private static Main instance;
     public static ArrayList<Material> beds = new ArrayList<>();
     static FileManager fm;
-    public static ArrayList<Player> Teamwaiting;
+    public static ArrayList<String> PlayersWaiting;
+    public static ArrayList<String> PlayersPlaying;
+
+    //TEAMS
+    public static ArrayList<String> Boomers;
+    public static ArrayList<String> Clowns;
+    public static ArrayList<String> Nerds;
+    public static ArrayList<String> Mutants;
+    public static ArrayList<String> Cripples;
+    public static ArrayList<String> Underdogs;
+    public static ArrayList<String> Gamers;
+
 
     static {
         Main.fm = FileManager.getInstance();
-        Main.Teamwaiting = new ArrayList<Player>();
+        Main.PlayersWaiting = new ArrayList<String>();
+        Main.PlayersPlaying = new ArrayList<String>();
+
+        //TEAMS
+        Main.Boomers = new ArrayList<String>();
+        Main.Clowns = new ArrayList<String>();
+        Main.Nerds = new ArrayList<String>();
+        Main.Mutants = new ArrayList<String>();
+        Main.Cripples = new ArrayList<String>();
+        Main.Underdogs = new ArrayList<String>();
+        Main.Gamers = new ArrayList<String>();
     }
 
     public static Main getInstance() {
