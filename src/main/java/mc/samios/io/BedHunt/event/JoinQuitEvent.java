@@ -52,6 +52,11 @@ public class JoinQuitEvent implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
         Player player = e.getPlayer();
+        for (int check = 0; check < Main.PlayersPlaying.size(); check++){
+            if (Main.PlayersPlaying.get(check) == player.getDisplayName()){
+                Main.PlayersPlaying.remove(check);
+            }
+        }
         Main.PlayersWaiting.remove(player.getDisplayName());
         e.setQuitMessage(C.error("Quit", player.getDisplayName()));
         players--;

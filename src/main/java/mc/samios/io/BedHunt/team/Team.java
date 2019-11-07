@@ -41,8 +41,6 @@ public class Team {
 
 
     public static void teamsort(){
-        Main.PlayersPlaying.addAll(Main.PlayersWaiting);
-        Main.PlayersWaiting.clear();
 
         float calc = (float)(Main.PlayersPlaying.size() / 2);
         int cap = (int)calc;
@@ -55,8 +53,8 @@ public class Team {
             int TeamSelector = 0;
 
             String p = Main.PlayersPlaying.get(assign);
-
-            while (assigned == false){
+            Bukkit.broadcastMessage(p);
+            while (!assigned){
                 TeamSelector = rand.nextInt(7);
                 if (TeamSelector == 1 && Main.Boomers.size() < 2){
                     if (teamsActive == cap ){
