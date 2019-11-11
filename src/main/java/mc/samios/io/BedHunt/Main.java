@@ -95,8 +95,12 @@ public class Main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(new BedPlacedEvent(), this);
         this.getServer().getPluginManager().registerEvents(new BlockNextToBedEvent(), this);
         this.getServer().getPluginManager().registerEvents(new DestroyBedEvent(), this);
+        //this.getServer().getPluginManager().registerEvents(new GenerationModifications(), this);
         this.getServer().getPluginManager().registerEvents(new GameEvents(), this);
         this.getServer().getPluginManager().registerEvents(new FriendlyFireListener(), this);
+        //this.getServer().getPluginManager().registerEvents((Listener) new PlayerCannotPickupBeds(), this);
+        //this.getServer().getPluginManager().registerEvents((Listener) new PlayerCannotDropBeds(), this);
+
 
     }
 
