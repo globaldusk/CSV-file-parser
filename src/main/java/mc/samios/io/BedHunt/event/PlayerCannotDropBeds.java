@@ -6,8 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 
-public class PlayerCannotDropBeds {
-    public class PickupBed implements Listener {
+public class PlayerCannotDropBeds implements Listener {
         @EventHandler
         public void PickupItem(PlayerPickupItemEvent e) {
             Player player = e.getPlayer();
@@ -17,4 +16,3 @@ public class PlayerCannotDropBeds {
             }
         }
     }
-}
