@@ -34,9 +34,12 @@ public class RemoveBedCommand implements CommandExecutor {
                 } else {
                     player.sendMessage(C.staff("Admin", "You are not looking at a bed!"));
                 }
-            } if (args.length == 1 && args[0].equalsIgnoreCase("all")) {
+            } else if (args.length == 1 && args[0].equalsIgnoreCase("all")) {
                 // remove all beds
-            } // add method for removing individual team beds
+            } else if (args.length == 1) {
+                // add method for removing individual team beds
+                // get bed location from database and destroy it
+            }
         } else {
             player.sendMessage(C.error("Permissions", "You are not allowed to do this."));
         }

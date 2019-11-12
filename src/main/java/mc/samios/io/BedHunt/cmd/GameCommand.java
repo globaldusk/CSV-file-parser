@@ -21,7 +21,7 @@ public class GameCommand implements CommandExecutor {
                     // start game
                     if (!GameEvents.gameStarted) {
                         player.sendMessage(C.prefix("Game", "You have successfully force-started the game countdown!"));
-                        GameEvents.forceStartGame();
+                        GameEvents.startGame();
                     } else if (GameEvents.gameStarted) {
                         // game has already started
                         player.sendMessage(C.error("Error", "Game has already started!"));
@@ -34,7 +34,7 @@ public class GameCommand implements CommandExecutor {
                         return false;
                     } else {
                         player.sendMessage(C.prefix("Game", "You have succesfully force-stopped the game!"));
-                        GameEvents.forceStopGame();
+                        GameEvents.startGame();
                     }
                 } else if (args[0].equalsIgnoreCase("restart")) {
                     // restart game

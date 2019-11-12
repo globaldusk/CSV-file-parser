@@ -4,7 +4,6 @@ import mc.samios.io.BedHunt.cmd.*;
 import mc.samios.io.BedHunt.event.*;
 import mc.samios.io.BedHunt.team.Scoreboard;
 import mc.samios.io.BedHunt.util.C;
-import mc.samios.io.BedHunt.util.FileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -21,7 +20,6 @@ public class Main extends JavaPlugin implements Listener {
 
     private static Main instance;
     public static ArrayList<Material> beds = new ArrayList<>();
-    static FileManager fm;
     public static List<String> PlayersWaiting;
     public static List<String> PlayersPlaying;
 
@@ -36,7 +34,6 @@ public class Main extends JavaPlugin implements Listener {
 
 
     static {
-        Main.fm = FileManager.getInstance();
         Main.PlayersWaiting = new ArrayList<String>();
         Main.PlayersPlaying = new ArrayList<String>();
 
@@ -69,7 +66,7 @@ public class Main extends JavaPlugin implements Listener {
             public void run() {
                 for (final Player player : Bukkit.getOnlinePlayers()) {
                     if (!GameEvents.gameStarted) {
-                        Scoreboard.updateLobbyScoreboard(player);
+                        Scoreboard.updateScoreboard(player);
                     } else if (GameEvents.gameStarted) {
                         // remove lobby scoreboard
                         // add game scoreboard
@@ -97,7 +94,6 @@ public class Main extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(new DestroyBedEvent(), this);
         //this.getServer().getPluginManager().registerEvents(new GenerationModifications(), this);
         this.getServer().getPluginManager().registerEvents(new GameEvents(), this);
-        this.getServer().getPluginManager().registerEvents(new FriendlyFireListener(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerCannotPickupBeds(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerCannotDropBeds(), this);
 
@@ -106,7 +102,6 @@ public class Main extends JavaPlugin implements Listener {
 
     public void registerCommands() {
         getCommand("info").setExecutor(new InfoCommand());
-        getCommand("cube").setExecutor(new CubeCommand());
         getCommand("removebed").setExecutor(new RemoveBedCommand());
         getCommand("rules").setExecutor(new RulesCommand());
         getCommand("gameplay").setExecutor(new GameplayCommand());
@@ -114,21 +109,6 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("game").setExecutor(new GameCommand());
         getCommand("deathmatch").setExecutor(new DeathmatchCommand());
     }
-
-    public void addDefault(final String s1, final String s2) {
-        if (Main.fm.getConfig().get(s1) == null) {
-            Main.fm.getConfig().set(s1, (Object)s2);
-            Main.fm.saveConfig();
-        }
-    }
-
-    public void addDefault(final String s1, final int s2) {
-        if (Main.fm.getConfig().get(s1) == null) {
-            Main.fm.getConfig().set(s1, (Object)s2);
-            Main.fm.saveConfig();
-        }
-    }
-
 
     public static boolean checkBed(Block bed) {
         if (bed.getType().equals(Material.BLACK_BED) || bed.getType().equals(Material.LIME_BED) || bed.getType().equals(Material.BLUE_BED) ||

@@ -1,74 +1,40 @@
 package mc.samios.io.BedHunt.event;
 
-import mc.samios.io.BedHunt.Main;
-import mc.samios.io.BedHunt.team.PickTeams;
-import mc.samios.io.BedHunt.team.Team;
 import mc.samios.io.BedHunt.util.C;
-import mc.samios.io.BedHunt.util.FileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
-import org.bukkit.block.Block;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
-import org.bukkit.scoreboard.*;
-
-import java.util.UUID;
 
 public class JoinQuitEvent implements Listener {
 
-    FileManager fm;
     public static int players;
     public static boolean waiting = false;
-
-    public JoinQuitEvent() {
-        this.fm = FileManager.getInstance();
-    }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         e.setJoinMessage(C.prefix("Join", player.getDisplayName()));
-        Main.PlayersPlaying.add(player.getDisplayName());
-        // add 1 player to players int to check when limit is reached (10);
-        players++;
+        // get sql player data incl team
         Bukkit.getConsoleSender().sendMessage("Players: " + players);
-        if (!waiting) {
-            if (players >= 1) {
-                Bukkit.broadcastMessage(C.prefix("Bed Hunt", "Minimum players have been met. Game will start in 30 seconds."));
-                waiting = true;
-                startCounter();
-            } else {
-                // do nothing.
-            }
-        }
     }
 
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
         Player player = e.getPlayer();
-        for (int check = 0; check < Main.PlayersPlaying.size(); check++){
-            if (Main.PlayersPlaying.get(check) == player.getDisplayName()){
-                Main.PlayersPlaying.remove(check);
-            }
-        }
-        Main.PlayersWaiting.remove(player.getDisplayName());
+        // remove player from team. Once they leave they are eliminated. (even in pre-game)
         e.setQuitMessage(C.error("Quit", player.getDisplayName()));
-        players--;
-        Bukkit.getConsoleSender().sendMessage("Players: " + players);
-        if (players < 2) {
-            waiting = false;
-        }
+        Bukkit.broadcastMessage(C.error("Elimination", e.getPlayer().getName() + " has been eliminated!"));
     }
     public static int count = 30;
     public int stop;
 
     public void startCounter() {
+        // needs work
         if (players >= 1) {
             new BukkitRunnable() {
 
@@ -93,11 +59,11 @@ public class JoinQuitEvent implements Listener {
                                 pl.playSound(pl.getLocation(), Sound.BLOCK_STONE_BUTTON_CLICK_ON, 5, 2);
                             }
                         }
-                        /*if (count<=5) {
+                        if (count<=5) {
                             for (Player pl : Bukkit.getOnlinePlayers()) {
                                 pl.sendTitle(C.red + count, C.yellow + "Good luck!");
                             }
-                        } */
+                        }
                     }
                 }
             }.runTaskTimer(Bukkit.getServer().getPluginManager().getPlugin("BedHunt"), 20L, 20L);

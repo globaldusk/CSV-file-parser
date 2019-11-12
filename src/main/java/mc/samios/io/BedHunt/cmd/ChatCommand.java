@@ -1,6 +1,5 @@
 package mc.samios.io.BedHunt.cmd;
 
-import mc.samios.io.BedHunt.event.ChatListener;
 import mc.samios.io.BedHunt.util.C;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,9 +16,7 @@ public class ChatCommand implements CommandExecutor {
         if (args.length >= 1) {
             String chatMode = args[0];
             if (chatMode.toLowerCase() == "team" || chatMode.toLowerCase() == "t") {
-                ChatListener.TeamChat = true;
             } else if (chatMode.toLowerCase() == "all" || chatMode.toLowerCase() == "a") {
-                ChatListener.TeamChat = false;
                 player.sendMessage(C.prefix("Chat", "Changed chat channel to " + C.green + "ALL"));
             } else {
                 player.sendMessage(C.prefix("Chat", "Usage: /chat <team|all>"));
