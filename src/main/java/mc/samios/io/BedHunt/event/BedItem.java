@@ -1,11 +1,14 @@
 package mc.samios.io.BedHunt.event;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -27,16 +30,22 @@ public class BedItem implements Listener {
     }
 
 
-    public void PickupItem(PlayerPickupItemEvent e) {
-        Player player = e.getPlayer();
+    public void PickupItem(EntityPickupItemEvent e) {
+        Entity mob = e.getEntity();
         Item item = e.getItem();
 
-        if (item.getItemStack().getType().equals(Material.BLACK_BED) || item.getItemStack().getType().equals(Material.LIME_BED) || item.getItemStack().getType().equals(Material.BLUE_BED) || item.getItemStack().getType().equals(Material.BROWN_BED) || item.getItemStack().getType().equals(Material.CYAN_BED) || item.getItemStack().getType().equals(Material.GRAY_BED) || item.getItemStack().getType().equals(Material.GREEN_BED) || item.getItemStack().getType().equals(Material.LIGHT_BLUE_BED) || item.getItemStack().getType().equals(Material.LIGHT_GRAY_BED) || item.getItemStack().getType().equals(Material.MAGENTA_BED) || item.getItemStack().getType().equals(Material.YELLOW_BED) || item.getItemStack().getType().equals(Material.WHITE_BED) || item.getItemStack().getType().equals(Material.RED_BED) || item.getItemStack().getType().equals(Material.PINK_BED) || item.getItemStack().getType().equals(Material.PURPLE_BED) || item.getItemStack().getType().equals(Material.ORANGE_BED)){
-            e.setCancelled(true);
-            player.sendMessage("Pickup bed cancelled!");
+        if (mob.getType().equals(Player.class)){
+
+            if (item.getItemStack().getType().equals(Material.BLACK_BED) || item.getItemStack().getType().equals(Material.LIME_BED) || item.getItemStack().getType().equals(Material.BLUE_BED) || item.getItemStack().getType().equals(Material.BROWN_BED) || item.getItemStack().getType().equals(Material.CYAN_BED) || item.getItemStack().getType().equals(Material.GRAY_BED) || item.getItemStack().getType().equals(Material.GREEN_BED) || item.getItemStack().getType().equals(Material.LIGHT_BLUE_BED) || item.getItemStack().getType().equals(Material.LIGHT_GRAY_BED) || item.getItemStack().getType().equals(Material.MAGENTA_BED) || item.getItemStack().getType().equals(Material.YELLOW_BED) || item.getItemStack().getType().equals(Material.WHITE_BED) || item.getItemStack().getType().equals(Material.RED_BED) || item.getItemStack().getType().equals(Material.PINK_BED) || item.getItemStack().getType().equals(Material.PURPLE_BED) || item.getItemStack().getType().equals(Material.ORANGE_BED)){
+                e.setCancelled(true);
+                Bukkit.broadcastMessage("Pickup bed cancelled!");
+            }
+            else{
+                Bukkit.broadcastMessage("Pickup any!");
+            }
         }
         else{
-            player.sendMessage("Pickup any!");
+            Bukkit.broadcastMessage("idfk");
         }
 
     }
