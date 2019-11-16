@@ -2,12 +2,15 @@ package mc.samios.io.BedHunt.event;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
@@ -61,6 +64,35 @@ public class BedItem implements Listener {
                 event.setCancelled(true);
             }
         }
+    }
+
+    @EventHandler
+    public final void bedItemDrop(BlockBreakEvent event) {
+        Block block = event.getBlock();
+        if (block.getType().equals(Material.BLACK_BED) || block.getType().equals(Material.LIME_BED) || block.getType().equals(Material.BLUE_BED) ||
+                block.getType().equals(Material.BROWN_BED)
+                || block.getType().equals(Material.CYAN_BED) || block.getType().equals(Material.GRAY_BED) || block.getType().equals(Material.GREEN_BED) ||
+                block.getType().equals(Material.LIGHT_BLUE_BED) || block.getType().equals(Material.LIGHT_GRAY_BED) || block.getType().equals(Material.MAGENTA_BED) || block.getType().equals(Material.YELLOW_BED)
+                || block.getType().equals(Material.WHITE_BED) || block.getType().equals(Material.RED_BED) || block.getType().equals(Material.PINK_BED) || block.getType().equals(Material.PURPLE_BED) || block.getType().equals(Material.ORANGE_BED)) {
+
+           block.getDrops().clear();
+
+        }
+
+    }
+    @EventHandler
+    public final void bedExplode(BlockExplodeEvent event) {
+        Block block = event.getBlock();
+        if (block.getType().equals(Material.BLACK_BED) || block.getType().equals(Material.LIME_BED) || block.getType().equals(Material.BLUE_BED) ||
+                block.getType().equals(Material.BROWN_BED)
+                || block.getType().equals(Material.CYAN_BED) || block.getType().equals(Material.GRAY_BED) || block.getType().equals(Material.GREEN_BED) ||
+                block.getType().equals(Material.LIGHT_BLUE_BED) || block.getType().equals(Material.LIGHT_GRAY_BED) || block.getType().equals(Material.MAGENTA_BED) || block.getType().equals(Material.YELLOW_BED)
+                || block.getType().equals(Material.WHITE_BED) || block.getType().equals(Material.RED_BED) || block.getType().equals(Material.PINK_BED) || block.getType().equals(Material.PURPLE_BED) || block.getType().equals(Material.ORANGE_BED)) {
+
+            block.getDrops().clear();
+
+        }
+
     }
 }
 
