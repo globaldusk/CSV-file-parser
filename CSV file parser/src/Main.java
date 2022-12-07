@@ -69,7 +69,7 @@ public class Main {
 
     static String evaluatePostfix(String exp)
     {
-
+        Boolean leave = false;
         //create a stack
         Stack<String> stack=new Stack<>();
         String[] items = exp.split(" ");
@@ -90,12 +90,13 @@ public class Main {
             }
 
             else if(letterNumber){//if is letter number
-                System.out.println("HERE-"+findCellVal(item));
+                //System.out.println("HERE-"+findCellVal(item));
                 stack.push(findCellVal(item));
+                leave = true;
             }
                 //  If the scanned character is an operator, pop two
                 // elements from stack apply the operator
-            else{
+            else if(!leave){
                 int val1 = Integer.parseInt(stack.pop());
                 int val2 = Integer.parseInt(stack.pop());
                 switch (item) {
@@ -108,6 +109,9 @@ public class Main {
                         return "#ERR";
                     }
                 }
+            }
+            else{
+                return stack.pop()+" "+stack.pop()+" "+item;
             }
 
         }
