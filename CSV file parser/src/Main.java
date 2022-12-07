@@ -1,8 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static java.lang.Character.getNumericValue;
 
@@ -12,29 +9,74 @@ public class Main {
         System.out.println(getNumericValue(a)-9);
         System.out.println("Hello world!");//how to find cell id with letters
 
+        List<List<String>> cellMatrix = new ArrayList<>();
         List<String> rows = new ArrayList<>();
-        List<String> data = new ArrayList<>();
 
         Scanner sc = new Scanner(new File("example csv.csv"));
+        sc.useDelimiter(",");
         while (sc.hasNextLine())  //returns a boolean value
         {
-            //System.out.print(sc.next());  //find and returns the next complete token from this scanner
             rows.add(sc.nextLine());
         }
         sc.close();  //closes the scanner
 
-        Scanner scanner = new Scanner(new File("example csv.csv"));
-        scanner.useDelimiter(",");   //sets the delimiter pattern
-        while (scanner.hasNext())  //returns a boolean value
-        {
-            //System.out.print(sc.next());  //find and returns the next complete token from this scanner
-            data.add(scanner.next());
+        for (String row : rows) {
+            List<String> list = new ArrayList<String>(Arrays.asList(row.split(",")));
+            cellMatrix.add(list);
         }
-        scanner.close();  //closes the scanner
+        for (List<String> list : cellMatrix) {
 
-        for(int i = 0; i < data.size(); i++){
-            System.out.println(data.get(i));
+            for (String cell : list) {
+                System.out.print(cell+" -> ");
+                System.out.println(evaluatePostfix(cell));
+            }
+        }
+        System.out.println(cellMatrix);
+    }
+
+    public static boolean isNumeric(String str) {
+        if (str == null) {
+            return false;
+        }
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
         }
     }
 
+    static int evaluatePostfix(String exp)
+    {
+        //create a stack
+        Stack<Integer> stack=new Stack<>();
+        String[] items = exp.split(" ");
+
+        // Scan all characters one by one
+        for(String item : items)
+        {
+
+            if(isNumeric(item)){
+                stack.push(Integer.parseInt(item));
+            }
+
+
+                //  If the scanned character is an operator, pop two
+                // elements from stack apply the operator
+            else
+            {
+                int val1 = stack.pop();
+                int val2 = stack.pop();
+
+                switch (item) {
+                    case "+" -> stack.push(val2 + val1);
+                    case "-" -> stack.push(val2 - val1);
+                    case "/" -> stack.push(val2 / val1);
+                    case "*" -> stack.push(val2 * val1);
+                }
+            }
+        }
+        //System.out.print(stack.pop());
+        return stack.pop();
+    }
 }
