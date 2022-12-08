@@ -25,9 +25,34 @@ public class Main {
         for (List<String> list : cellMatrix) {
 
             for (String cell : list) {
-                System.out.print(cell+" -> ");
-                System.out.println(evaluatePostfix(cell));
-                list.set(list.indexOf(cell), evaluatePostfix(cell));
+                if(isCorrectNotation(cell)){
+                    System.out.print(cell+" -> ");
+                    System.out.println(evaluatePostfix(cell));
+                    list.set(list.indexOf(cell), evaluatePostfix(cell));
+                }
+                else{
+                    String[] items = cell.split(" ");
+                    StringBuilder setter = new StringBuilder();
+                    for(int i = 0; i < items.length; i++)
+                    {
+                        if(isLetterNumber(items[i])){
+                            items[i] = findCellVal(items[i]);
+
+                        }
+                        if(i == items.length-1){
+                            setter.append(items[i]);
+                        }
+                        else{
+                            setter.append(items[i]).append(" ");
+                        }
+
+                    }
+                    System.out.print(cell+" -> ");
+                    System.out.println(setter);
+                    list.set(list.indexOf(cell), setter.toString());
+                }
+
+
             }
         }
         System.out.println(cellMatrix);
@@ -43,6 +68,29 @@ public class Main {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    public static boolean isLetterNumber(String item){
+
+        char[] itemParts = item.toCharArray();
+        for(char chars : itemParts){
+            if(!Character.isLetterOrDigit(chars)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isCorrectNotation(String exp){
+        String[] items = exp.split(" ");
+
+        for(String item : items)
+        {
+            if (!isNumeric(item) && !Objects.equals(item, "+") && !Objects.equals(item, "-") && !Objects.equals(item, "*") && !Objects.equals(item, "/")){
+                return false;
+            }
+        }
+        return true;
     }
 
     public static String findCellVal(String coord){
@@ -77,29 +125,15 @@ public class Main {
         // Scan all characters one by one
         for(String item : items)
         {
-            boolean letterNumber = true;
-            char[] itemParts = item.toCharArray();
-            for(char chars : itemParts){
-                if(!Character.isLetterOrDigit(chars)){
-                    letterNumber = false;
-                }
-            }
-
             if(isNumeric(item)){
                 stack.push(item);
             }
-
-            else if(letterNumber){//if is letter number
-                //System.out.println("HERE-"+findCellVal(item));
-                stack.push(findCellVal(item));
-                leave = true;
-            }
                 //  If the scanned character is an operator, pop two
                 // elements from stack apply the operator
-            else if(!leave){
+            else {
                 int val1 = Integer.parseInt(stack.pop());
                 int val2 = Integer.parseInt(stack.pop());
-                switch (item) {
+                try {switch (item) {
                     case "+" -> stack.push(Integer.toString(val2 + val1));
                     case "-" -> stack.push(Integer.toString(val2 - val1));
                     case "/" -> stack.push(Integer.toString(val2 / val1));
@@ -109,13 +143,13 @@ public class Main {
                         return "#ERR";
                     }
                 }
+                }
+                catch(NumberFormatException e){
+                    System.out.print(e);
+                    return "#ERR";
+                };
             }
-            else{
-                return stack.pop()+" "+stack.pop()+" "+item;
-            }
-
         }
-        //System.out.print(stack.pop());
         return stack.pop();
     }
 }
